@@ -9,20 +9,23 @@ import 'package:movies/ui/widget/constant.dart';
 
 class PopularWidget extends StatelessWidget {
   static const routename = "popular";
+  final MoviesPopuler movie;
   final AsyncSnapshot snapshot;
 
-  PopularWidget({super.key, required this.snapshot});
 
+ const PopularWidget({super.key, required this.snapshot,required this.movie});
 
   @override
   Widget build(BuildContext context) {
   //  late UpCommingMovies upCommingMovies;
+
     return CarouselSlider.builder(itemCount:snapshot.data.results.length,
         itemBuilder: (context,itemIndex,PageViewIndex ){
-          return //GestureDetector(
-             // onTap: () {
-               // Navigator.push(context,MaterialPageRoute(builder: (context)=>DetailsScreen(movie: snapshot.data.results[itemIndex]) ,),);
-                //child:
+          return GestureDetector(
+              onTap: () {
+               Navigator.push(context,MaterialPageRoute(builder: (context)=>DetailsScreen(/*movie: snapshot.data[itemIndex] ,*/),
+                 settings: RouteSettings(arguments: movie)));
+                child:
                 SizedBox(
 
                     height: 200,
@@ -42,9 +45,9 @@ class PopularWidget extends StatelessWidget {
                     )
                 )
                 ;
-              }//);
-    //    },
-        ,options: CarouselOptions(
+              });
+      },
+        options: CarouselOptions(
             padEnds: true,
             height: 300,
             autoPlay: true,

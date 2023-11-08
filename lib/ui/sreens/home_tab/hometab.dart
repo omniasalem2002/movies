@@ -36,7 +36,7 @@ class _HomeTabState extends State<HomeTab> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
 
-                    return  PopularWidget(snapshot: snapshot);
+                    return  PopularWidget(snapshot: snapshot,movie: MoviesPopuler(),);
                   } else if (snapshot.hasError) {
                     return
                       Center(child: Text(snapshot.error.toString(),style: TextStyle(fontSize: 20)));
